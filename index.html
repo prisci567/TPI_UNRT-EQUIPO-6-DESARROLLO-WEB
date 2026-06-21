@@ -1,42 +1,229 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link href="style.css" rel="stylesheet">
     <meta charset="UTF-8">
-    <title>TP integrador UNRT</title>
+    <title>Guias de preparacion de cafe</title>
+    <style>
+    header {
+        display: flex;
+        align-items: center;
+        background: #003366;
+        margin: 0;
+        padding: 0;
+    }
+    h1 {
+        color: white;
+        margin: 0;
+        padding: 20px 20px;
+        font-size: 24px;
+    }
+    .menu-btn {
+        display: none;
+        margin-left: auto;
+        margin-right: 20px;
+        background: none;
+        border: 0;
+        color: white;
+        font-size: 28px;
+        cursor: pointer;
+        position: relative;
+    }
+    nav {
+        margin-left: auto;
+    }
+    nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        background: #003366;
+        display: flex;
+        gap: 10px;
+        padding-right: 20px;
+    }
+    nav a {
+        color: white;
+        text-decoration: none;
+        padding: 20px 15px;
+        display: block;
+    }
+    nav a:hover {
+        background: #002244;
+    }
+    .sidenav {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 220px;
+        height: 100%;
+        background: #003366;
+        list-style: none;
+        padding: 70px 0 0 0;
+        margin: 0;
+        box-shadow: 2px 0 8px rgba(0,0,0,0.2);
+        z-index: 50;
+    }
+    .sidenav li {
+        border-bottom: 1px solid #002244;
+    }
+    .sidenav a {
+        color: white;
+        display: block;
+        padding: 14px 18px;
+        text-decoration: none;
+    }
+    .sidenav a:hover {
+        background: #002244;
+    }
+    .sidenav.open {
+        display: block;
+    }
+    .card-section {
+        background: #263238;
+        color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        padding: 16px;
+        margin: 20px 0 20px 20px;
+        max-width: 940px;
+    }
+    .card-section h2 {
+        margin-top: 0;
+        margin-bottom: 12px;
+    }
+    .card-section li {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    .card-section a {
+        color: #90caf9;
+        text-decoration: none;
+    }
+    .card-section a:hover {
+        text-decoration: underline;
+    }
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        max-width: 980px;
+        margin: 20px auto;
+        padding: 0 12px;
+    }
+    .col {
+        flex: 1 1 100%;
+    }
+    .col.s12.m6 {
+        flex: 0 0 100%;
+    }
+    .card {
+        background: #263238;
+        color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        overflow: hidden;
+        width: 100%;
+    }
+    .card-content {
+        padding: 16px;
+    }
+    .card-title {
+        font-size: 1.2rem;
+        margin: 0 0 12px;
+        display: block;
+    }
+    .card-action {
+        background: #1c2730;
+        padding: 12px 16px;
+        display: flex;
+        gap: 12px;
+    }
+    .card-action a {
+        color: #90caf9;
+        text-decoration: none;
+    }
+    .card-action a:hover {
+        text-decoration: underline;
+    }
+    @media (min-width: 768px) {
+        .col.s12.m6 {
+            flex: 0 0 48%;
+        }
+    }
+    @media (max-width: 768px) {
+        header {
+            justify-content: center;
+        }
+        h1 {
+            padding: 20px 0;
+            text-align: center;
+            width: 100%;
+        }
+        nav {
+            display: none;
+        }
+        .menu-btn {
+            display: block;
+            position: absolute;
+            right: 20px;
+            top: 16px;
+        }
+    }
+    </style>
 </head>
 <body>
     <header>
-    <h1>placeholder</h1>
+    <h1>Home</h1>
+    <button class="menu-btn" id="menu-btn" onclick="toggleMenu()">☰</button>
     <nav>
         <ul>
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#menu">Menú</a></li>
-            <li><a href="#contacto">Contacto</a></li>
+            <li><a href="#espresso">Expresso</a></li>
+            <li><a href="#Prensa Francesa">Prensa Francesa</a></li>
+            <li><a href="#v60">v60</a></li>
+            <li><a href="#aeropress">Aeropress</a></li>
         </ul>
     </nav>
     </header>
-<main>
-<section id="inicio">
-    <h2>placeholder</h2>
-    <p>placeholder</p>
-</section>
-<section id="menu">
-    <h2>placeholder</h2>
-    <article class="placeholder">
-    <h3>placeholder</h3>
-        <p>placeholder</p>
-<span class="placeholder"></span>
-    </article>
-<article class="placeholder">
-<h3>placeholder</h3>
-    <p>placeholder</p>
-    <span class="placeholder"></span>
-</article>
-</section>
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="#espresso">Expresso</a></li>
+        <li><a href="#Prensa Francesa">Prensa Francesa</a></li>
+        <li><a href="#v60">v60</a></li>
+        <li><a href="#aeropress">Aeropress</a></li>
+    </ul>
+    <script>
+    function toggleMenu() {
+        var mobileMenu = document.getElementById('mobile-demo');
+        mobileMenu.className = mobileMenu.className == 'sidenav' ? 'sidenav open' : 'sidenav';
+    }
+    document.onclick = function(event) {
+        var mobileMenu = document.getElementById('mobile-demo');
+        var menuBtn = document.getElementById('menu-btn');
+        if (mobileMenu.className == 'sidenav open' && event.target !== menuBtn && !mobileMenu.contains(event.target)) {
+            mobileMenu.className = 'sidenav';
+        }
+    };
+    </script>
+    <main>
+        <section id="espresso" class="card-section">
+            <h2>Como hacer cafe Expresso</h2>
+            <li><a href="espresso.html">Ver instrucciones aqui</a></li>
+        </section>
+        <section id="Prensa Francesa" class="card-section">
+            <h2>Como hacer cafe Prensa Francesa</h2>
+            <li><a href="prensa.francesa.html">Ver instrucciones aqui</a></li>
+        </section>
+        <section id="v60" class="card-section">
+            <h2>Como hacer cafe v60</h2>
+            <li><a href="Hario_V60.html">Ver instrucciones aqui</a></li>
+        </section>
+        <section id="aeropress" class="card-section">
+            <h2>Como hacer cafe Aeropress</h2>
+            <li><a href="aeropress.html">Ver instrucciones aqui</a></li>
+        </section>
 </main>
 <footer>
-    <p>Inserte copyright aqui (c) 2026</p>
+    <p>Trabajo Practico Integrador UNRT, Equipo 6 (c) 2026</p>
 </footer>
 </body>
 </html>
